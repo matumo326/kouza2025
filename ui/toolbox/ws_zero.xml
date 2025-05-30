@@ -650,7 +650,7 @@
       </value> -->
       <value name="project_description">
         <shadow type="text">
-          <field name="TEXT">name</field>
+          <field name="TEXT">Program_Name</field>
         </shadow>
       </value>
     </block>
