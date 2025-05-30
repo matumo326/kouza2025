@@ -320,8 +320,7 @@
 
   <sep></sep>
 
-    <category name="スイッチ" colour="160">    
-      <!-- <block type="switch14_get"></block> -->
+<!--     <category name="スイッチ" colour="160">    
       <block type="touch_get">
       <value name="threshold">
         <shadow type="math_number">
@@ -329,7 +328,7 @@
         </shadow>
       </value>
     </block>
-    </category>
+    </category> -->
 
 <!--   <category name="音楽" colour="20">
     <block type="rtttl_play"> 
