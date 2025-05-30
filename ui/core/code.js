@@ -433,9 +433,11 @@ Code.init = function() {
 
 
   Code.bindClick('forumButton',
-    function () {window.open("../example.html",'_blank')}
-  )
+      function () {window.open("../example.html",'_blank')})
 
+  Code.bindClick('notificationButton',
+      function () {window.open("../file_upload.html",'_blank')})
+  
   // Disable the link button if page isn't backed by App Engine storage.
   var linkButton = document.getElementById('linkButton');
   if ('BlocklyStorage' in window) {

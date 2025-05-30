@@ -11,6 +11,98 @@ Blockly.Blocks['roop'] = {
   }
 };
 
+Blockly.Blocks['pattern_huwa'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldLabel("全体をフワッと点滅"), "MSG_NEOPIXEL");
+
+    this.appendValueInput("color")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("色");
+
+    this.appendValueInput("speed")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("はやさ 1～10");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+
+    this.setColour(40);
+ this.setTooltip("全体をフワッと点滅させる");
+  }
+};
+Blockly.Blocks['pattern_random_blink'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldLabel("ランダムにフワッと点滅"), "MSG_NEOPIXEL");
+
+    this.appendValueInput("num")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("個数 1～20");
+
+    this.appendValueInput("speed")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("はやさ 1～5");
+
+    this.appendValueInput("count")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("くりかえす回数");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+
+    this.setColour(40);
+ this.setTooltip("ランダムにフワッと点滅させる");
+  }
+};
+
+Blockly.Blocks['pattern_change_move_up'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldLabel("色が変化しながら上に移動"), "MSG_NEOPIXEL");
+
+    this.appendValueInput("speed")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("はやさ 1～10");
+
+    this.appendValueInput("duration")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("くりかえす秒数");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+
+    this.setColour(40);
+ this.setTooltip("色が変化しながら上に移動する");
+  }
+};
+
+Blockly.Blocks['pattern_change_move_down'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldLabel("色が変化しながら下に移動"), "MSG_NEOPIXEL");
+
+    this.appendValueInput("speed")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("はやさ 1～10");
+
+    this.appendValueInput("duration")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("くりかえす秒数");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+
+    this.setColour(40);
+ this.setTooltip("色が変化しながら下に移動する");
+  }
+};
+
 Blockly.Blocks['switch20_get'] = {
   init: function() {
     this.appendDummyInput()
@@ -11329,21 +11421,20 @@ Blockly.Blocks['tone'] = {
 Blockly.Blocks['note'] = {
   init: function(){
     this.appendDummyInput()
-        .appendField("音符を鳴らす");
+        .appendField("音階を鳴らす");
   //   this.appendValueInput("pin")
   //       .setCheck(null)
 	// .appendField("ピン");
 
     this.appendValueInput("note")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("音符");
+        .appendField("音階");
 
     this.appendValueInput("duration")
-        .setCheck("Number")
-	.appendField("長さ(秒):");
+    .setAlign(Blockly.ALIGN_RIGHT)
+    .appendField("音符");
 
     this.appendDummyInput()
-        .appendField("(0は無限の長さ)");
 
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -11353,7 +11444,27 @@ Blockly.Blocks['note'] = {
  }
 };
 
+Blockly.Blocks['tempo'] = {
+  init: function(){
+    this.appendDummyInput()
+        .appendField("音楽のはやさ");
+  //   this.appendValueInput("pin")
+  //       .setCheck(null)
+	// .appendField("ピン");
 
+  this.appendValueInput("tempo")
+    .setCheck("Number")
+    .appendField("♪ = ");
+
+    this.appendDummyInput()
+
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(20);
+ this.setTooltip("Sound - tone generator (music note)");
+ this.setHelpUrl("http://www.bipes.net.br");
+ }
+};
 
 Blockly.Blocks['rtttl_play'] = {
   init: function() {
@@ -11379,9 +11490,10 @@ Blockly.Blocks['rtttl_play'] = {
 Blockly.Blocks['tone_type'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("音符:")
+        .appendField("音階:")
 //        .appendField(new Blockly.FieldDropdown([["B1","31"], ["C2","33"], ["CS2","35"], ["D2","37"], ["DS2","39"], ["E2","41"], ["F2","44"], ["FS2","46"], ["G2","49"], ["GS2","52"], ["A2","55"], ["AS2","58"]]), "tone");
-        .appendField(new Blockly.FieldDropdown([["ラ3","220"], ["ラ#3","233"], ["シ3","247"], ["ド4","262"], ["ド#4","277"], ["レ4","294"], ["レ#4","311"], ["ミ4","330"], ["ファ4","349"], ["ファ#4","370"], ["ソ4","392"], ["ソ#4","415"], ["ラ4","440"], ["ラ#4","466"], ["シ4","494"], ["ド5","523"], ["ド#5","554"], ["レ5","587"], ["レ#5","622"], ["ミ5","659"], ["ファ5","698"], ["ファ#5","740"], ["ソ5","784"], ["ソ#5","831"], ["ラ5","880"], ["ラ#5","932"], ["シ5","988"], ["ド6","1047"], ["ド#6","1109"], ["レ6","1175"], ["レ#6","1245"], ["ミ6","1319"], ["ファ6","1397"], ["ファ#6","1480"], ["ソ6","1568"], ["ソ#6","1661"], ["ラ6","1760"], ["ラ#6","1865"], ["シ6","1976"], ["ド7","2093"], ["ド#7","2217"], ["レ7","2349"], ["レ#7","2489"], ["ミ7","2637"], ["ファ7","2794"], ["ファ#7","2960"], ["ソ7","3136"], ["ソ#7","3322"]]), "tone");
+          // .appendField(new Blockly.FieldDropdown([["休符","0"], ["ラ3","220"], ["ラ#3","233"], ["シ3","247"], ["ド4","262"], ["ド#4","277"], ["レ4","294"], ["レ#4","311"], ["ミ4","330"], ["ファ4","349"], ["ファ#4","370"], ["ソ4","392"], ["ソ#4","415"], ["ラ4","440"], ["ラ#4","466"], ["シ4","494"], ["ド5","523"], ["ド#5","554"], ["レ5","587"], ["レ#5","622"], ["ミ5","659"], ["ファ5","698"], ["ファ#5","740"], ["ソ5","784"], ["ソ#5","831"], ["ラ5","880"], ["ラ#5","932"], ["シ5","988"], ["ド6","1047"], ["ド#6","1109"], ["レ6","1175"], ["レ#6","1245"], ["ミ6","1319"], ["ファ6","1397"], ["ファ#6","1480"], ["ソ6","1568"], ["ソ#6","1661"], ["ラ6","1760"], ["ラ#6","1865"], ["シ6","1976"], ["ド7","2093"], ["ド#7","2217"], ["レ7","2349"], ["レ#7","2489"], ["ミ7","2637"], ["ファ7","2794"], ["ファ#7","2960"], ["ソ7","3136"], ["ソ#7","3322"]]), "tone");
+          .appendField(new Blockly.FieldDropdown([["休符","0"], ["ラ4","440"], ["ラ#4","466"], ["シ4","494"], ["ド5","523"], ["ド#5","554"], ["レ5","587"], ["レ#5","622"], ["ミ5","659"], ["ファ5","698"], ["ファ#5","740"], ["ソ5","784"], ["ソ#5","831"], ["ラ5","880"], ["ラ#5","932"], ["シ5","988"], ["ド6","1047"], ["ド#6","1109"], ["レ6","1175"], ["レ#6","1245"], ["ミ6","1319"], ["ファ6","1397"], ["ファ#6","1480"], ["ソ6","1568"], ["ソ#6","1661"], ["ラ6","1760"], ["ラ#6","1865"], ["シ6","1976"], ["ド7","2093"], ["ド#7","2217"], ["レ7","2349"], ["レ#7","2489"], ["ミ7","2637"]]), "tone");
 
     this.setOutput(true, null);
     this.setColour(20);
@@ -11390,6 +11502,20 @@ Blockly.Blocks['tone_type'] = {
   }
 };
 
+Blockly.Blocks['duration_type'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("音符:")
+//        .appendField(new Blockly.FieldDropdown([["B1","31"], ["C2","33"], ["CS2","35"], ["D2","37"], ["DS2","39"], ["E2","41"], ["F2","44"], ["FS2","46"], ["G2","49"], ["GS2","52"], ["A2","55"], ["AS2","58"]]), "tone");
+          .appendField(new Blockly.FieldDropdown([ ["4分音符","60"], ["8分音符","30"],["16分音符","15"],["2分音符","120"], ["全音符","240"],["付点4分音符","90"],["付点8分音符","45"], ["付点16分音符","22.5"],["付点2分音符","180"]]), "duration");
+          // .appendField(new Blockly.FieldDropdown([ ["4分音符","0.4"], ["8分音符","0.2"],["16分音符","0.1"],["2分音符","0.8"], ["全音符","1.6"],["付点4分音符","0.6"],["付点8分音符","0.3"], ["付点16分音符","0.15"],["付点2分音符","1.2"]]), "duration");
+
+    this.setOutput(true, null);
+    this.setColour(20);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
 
 //Fri Aug  6 23:23:55 -03 2021
 //Snek
