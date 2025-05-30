@@ -23,7 +23,7 @@ var MSG = {
   badXml: "XML のエラーです:\n%1\n\nXML の変更をやめるには「OK」、編集を続けるには「キャンセル」を選んでください。",
   saveTooltip: "ブロックをファイルに保存します。",
   loadTooltip: "ファイルからブロックを読み込みます。",
-  notificationTooltip: "通知パネル",
+  notificationTooltip: "テキスト",
   ErrorGET: "リクエストされたファイルを読み込めません。",
   invalidDevice: "無効なデバイスです。",
   languageTooltip: "言語を変更する。",
