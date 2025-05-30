@@ -650,7 +650,7 @@
       </value> -->
       <value name="project_description">
         <shadow type="text">
-          <field name="TEXT">名前</field>
+          <field name="TEXT">name</field>
         </shadow>
       </value>
     </block>
