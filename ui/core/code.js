@@ -436,7 +436,7 @@ Code.init = function() {
       function () {window.open("../example.html",'_blank')})
 
   Code.bindClick('notificationButton',
-      function () {window.open("../file_upload.html",'_blank')})
+      function () {window.open("../2025プログラミング講座テキスト.pdf",'_blank')})
   
   // Disable the link button if page isn't backed by App Engine storage.
   var linkButton = document.getElementById('linkButton');
