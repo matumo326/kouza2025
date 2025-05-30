@@ -21,6 +21,174 @@ Blockly.Python['roop'] = function(block) {
   return code;
 };
 
+Blockly.Python['pattern_huwa'] = function(block) {
+  var value_color = Blockly.Python.valueToCode(block, 'color', Blockly.Python.ORDER_NONE);
+  var value_speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_NONE);
+  if (value_speed>10){value_speed=10};
+  if (value_speed<1){value_speed=1};
+  value_speed = Math.trunc(70 / value_speed);
+
+  Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
+  Blockly.Python.definitions_['import_neopixel'] = 'from neopixel import Neopixel';
+  Blockly.Python.definitions_['import_time'] = 'import time';
+  Blockly.Python.definitions_['neopixel_init' ] = `np=Neopixel(50,0,29,"GRB")\n`; 
+  // Blockly.Python.definitions_['neopixel_init' ] = `np=Neopixel(50,0,29,"GRB")\n`; 
+
+  var code2 = `\tcol2[0] = int(red*i)\n`
+  code2 += `\tcol2[1] = int(green*i)\n`
+  code2 += `\tcol2[2] = int(blue*i)\n`
+  code2 += `\tnp.fill(col2)\n`
+  code2 += `\tnp.show()\n`
+  code2 += `\ttime.sleep_ms(interval)\n`
+
+  var code = `interval = ${value_speed}\n`
+  code += `col=${value_color}\n`
+  code += `col2=[0,0,0]\n`
+  code += `red = col[0]/50\ngreen = col[1]/50\nblue = col[2]/50\n`
+  code += `for i in range(51):\n`
+  code += code2
+  code += `for i in range(50, -1, -1):\n`
+  code += code2
+
+ // var code = `np.set_pixel(${value_address},${value_color})\n`;
+
+  return code;
+};
+
+Blockly.Python['pattern_random_blink'] = function(block) {
+  var value_num = Blockly.Python.valueToCode(block, 'num', Blockly.Python.ORDER_NONE);
+  var value_speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_NONE);
+  var value_count = Blockly.Python.valueToCode(block, 'count', Blockly.Python.ORDER_NONE);
+  if (value_num>20){value_num=20};
+  if (value_speed>5){value_speed=5};
+  if (value_speed<1){value_speed=1};
+  value_speed = Math.trunc(50 / value_speed);
+
+  Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
+  Blockly.Python.definitions_['import_neopixel'] = 'from neopixel import Neopixel';
+  Blockly.Python.definitions_['import_time'] = 'import time';
+  Blockly.Python.definitions_['import_random'] = 'import random';
+  Blockly.Python.definitions_['neopixel_init' ] = `np=Neopixel(50,0,29,"GRB")\n`; 
+  Blockly.Python.definitions_['neopixel_init' ] = `np=Neopixel(50,0,29,"GRB")\n`;
+  var htr = `def HSL_to_RGB(h, s, l):\n`
+  htr += `\th, s, l = h/360, s/100, l/100\n`
+  htr += `\tdef hue2rgb (p, q, t):\n`
+  htr += `\t\tif(t < 0.): t += 1\n`
+  htr += `\t\tif(t > 1.): t -= 1\n`
+  htr += `\t\tif(t < 1/6): return p + (q - p) * 6 * t\n`
+  htr += `\t\tif(t < 1/2): return q\n`
+  htr += `\t\tif(t < 2/3): return p + (q - p) * (2/3 - t) * 6\n`
+  htr += `\t\treturn p\n`
+  htr += `\tq = l * (1 + s) if l < 0.5 else l + s - l * s\n`
+  htr += `\tp = 2 * l - q\n`
+  htr += `\tr, g, b = hue2rgb(p, q, h + 1/3), hue2rgb(p, q, h), hue2rgb(p, q, h - 1/3)\n`
+  htr += `\treturn (int(r * 255), int(g * 255), int(b * 255))\n`
+  Blockly.Python.definitions_['hsl_to_rgb' ] = htr;
+
+  var code2 = `\t\tstart = time.ticks_ms()\n`
+  code2 += `\t\tfor j in range(n):\n`
+  code2 += `\t\t\tnp.set_pixel(pos[int(j)],HSL_to_RGB((col[int(j)] * 60),100,k))\n`
+  code2 += `\t\tnp.show()\n`
+  code2 += `\t\twhile(time.ticks_ms() - start < speed):\n`
+  code2 += `\t\t\tpass\n`
+
+  var code = `n = ${value_num}\n`
+  code += `speed=${value_speed}\n`
+  code += `rep=${value_count}\n`
+  code += `pos = [0] * n\n`
+  code += `col = [0] * n\n`
+  code += `for i in range(n):\n`
+  code += `\tpos[int(i)] = random.randint(0, 49)\n`
+  code += `\tcol[int(i)] = random.randint(0, 5)\n`
+  code += `for count in range(rep):\n`
+  code += `\tfor k in range(50):\n`
+  code += code2
+  code += `\tfor k in range(49, -1, -1):\n`
+  code += code2
+   
+  return code;
+};
+
+Blockly.Python['pattern_change_move_up'] = function(block) {
+  var value_speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_NONE);
+  var value_duration = Blockly.Python.valueToCode(block, 'duration', Blockly.Python.ORDER_NONE);
+  if (value_speed>10){value_speed=10};
+  if (value_speed<1){value_speed=1};
+  value_speed = Math.trunc(100 / value_speed);
+
+  Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
+  Blockly.Python.definitions_['import_neopixel'] = 'from neopixel import Neopixel';
+  Blockly.Python.definitions_['import_time'] = 'import time';
+  Blockly.Python.definitions_['neopixel_init' ] = `np=Neopixel(50,0,29,"GRB")\n`;
+  var htr = `def HSL_to_RGB(h, s, l):\n`
+  htr += `\th, s, l = h/360, s/100, l/100\n`
+  htr += `\tdef hue2rgb (p, q, t):\n`
+  htr += `\t\tif(t < 0.): t += 1\n`
+  htr += `\t\tif(t > 1.): t -= 1\n`
+  htr += `\t\tif(t < 1/6): return p + (q - p) * 6 * t\n`
+  htr += `\t\tif(t < 1/2): return q\n`
+  htr += `\t\tif(t < 2/3): return p + (q - p) * (2/3 - t) * 6\n`
+  htr += `\t\treturn p\n`
+  htr += `\tq = l * (1 + s) if l < 0.5 else l + s - l * s\n`
+  htr += `\tp = 2 * l - q\n`
+  htr += `\tr, g, b = hue2rgb(p, q, h + 1/3), hue2rgb(p, q, h), hue2rgb(p, q, h - 1/3)\n`
+  htr += `\treturn (int(r * 255), int(g * 255), int(b * 255))\n`
+  Blockly.Python.definitions_['hsl_to_rgb' ] = htr;
+
+  var code = `speed=${value_speed}\n`
+  code += `duration=${value_duration} * 1000\n`
+  code += `for i in range(50):\n`
+  code += `\tnp.set_pixel(i,HSL_to_RGB((i * 7),100,20))\n`
+  code += `np.show()\n`
+  code += `start = time.ticks_ms()\n`
+  code += `while (time.ticks_ms() - start < duration):\n`
+  code += `\tnp.rotate_right(1)\n`
+  code += `\tnp.show()\n`
+  code += `\ttime.sleep_ms(speed)\n`
+   
+  return code;
+};
+
+Blockly.Python['pattern_change_move_down'] = function(block) {
+  var value_speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_NONE);
+  var value_duration = Blockly.Python.valueToCode(block, 'duration', Blockly.Python.ORDER_NONE);
+  if (value_speed>10){value_speed=10};
+  if (value_speed<1){value_speed=1};
+  value_speed = Math.trunc(100 / value_speed);
+
+  Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
+  Blockly.Python.definitions_['import_neopixel'] = 'from neopixel import Neopixel';
+  Blockly.Python.definitions_['import_time'] = 'import time';
+  Blockly.Python.definitions_['neopixel_init' ] = `np=Neopixel(50,0,29,"GRB")\n`;
+  var htr = `def HSL_to_RGB(h, s, l):\n`
+  htr += `\th, s, l = h/360, s/100, l/100\n`
+  htr += `\tdef hue2rgb (p, q, t):\n`
+  htr += `\t\tif(t < 0.): t += 1\n`
+  htr += `\t\tif(t > 1.): t -= 1\n`
+  htr += `\t\tif(t < 1/6): return p + (q - p) * 6 * t\n`
+  htr += `\t\tif(t < 1/2): return q\n`
+  htr += `\t\tif(t < 2/3): return p + (q - p) * (2/3 - t) * 6\n`
+  htr += `\t\treturn p\n`
+  htr += `\tq = l * (1 + s) if l < 0.5 else l + s - l * s\n`
+  htr += `\tp = 2 * l - q\n`
+  htr += `\tr, g, b = hue2rgb(p, q, h + 1/3), hue2rgb(p, q, h), hue2rgb(p, q, h - 1/3)\n`
+  htr += `\treturn (int(r * 255), int(g * 255), int(b * 255))\n`
+  Blockly.Python.definitions_['hsl_to_rgb' ] = htr;
+
+  var code = `speed=${value_speed}\n`
+  code += `duration=${value_duration} * 1000\n`
+  code += `for i in range(50):\n`
+  code += `\tnp.set_pixel(i,HSL_to_RGB((i * 7),100,20))\n`
+  code += `np.show()\n`
+  code += `start = time.ticks_ms()\n`
+  code += `while (time.ticks_ms() - start < duration):\n`
+  code += `\tnp.rotate_left(1)\n`
+  code += `\tnp.show()\n`
+  code += `\ttime.sleep_ms(speed)\n`
+   
+  return code;
+};
+
 Blockly.Python['switch20_get'] = function(block) {
   Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
   Blockly.Python.definitions_['switch20_get'] = 'switch20 = Pin(20, Pin.IN)\n\n';
@@ -5536,6 +5704,7 @@ Blockly.Python['neopixel_control'] = function(block) {
   Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
   Blockly.Python.definitions_['import_neopixel'] = 'from neopixel import Neopixel';
   Blockly.Python.definitions_['neopixel_init' ] = `np=Neopixel(50,0,29,"GRB")\n`; 
+  // Blockly.Python.definitions_['neopixel_init' ] = `np=Neopixel(50,0,29,"GRB")\n`; 
 
   return code;
 };
@@ -5550,6 +5719,7 @@ Blockly.Python['neopixel_control_line'] = function(block) {
   Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
   Blockly.Python.definitions_['import_neopixel'] = 'from neopixel import Neopixel';
   Blockly.Python.definitions_['neopixel_init' ] = `np=Neopixel(50,0,29,"GRB")\n`; 
+  // Blockly.Python.definitions_['neopixel_init' ] = `np=Neopixel(50,0,29,"GRB")\n`; 
 
   return code;
 };
@@ -5562,6 +5732,7 @@ Blockly.Python['neopixel_control_all'] = function(block) {
   Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
   Blockly.Python.definitions_['import_neopixel'] = 'from neopixel import Neopixel';
   Blockly.Python.definitions_['neopixel_init' ] = `np=Neopixel(50,0,29,"GRB")\n`; 
+  // Blockly.Python.definitions_['neopixel_init' ] = `np=Neopixel(50,0,29,"GRB")\n`; 
 
   return code;
 };
@@ -5844,7 +6015,8 @@ Blockly.Python["esp32_cam_white_led"] = function(block) {
 
 Blockly.Python["rtttl_play"] = function(block) {
 	// var pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
-  var pin = '(8)';
+  // var pin = '(8)';
+  var pin = '(2)';
 
 	var song = Blockly.Python.valueToCode(block, 'song', Blockly.Python.ORDER_ATOMIC);
 	Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
@@ -5879,40 +6051,52 @@ Blockly.Python['tone'] = function(block) {
 	return code;
   };
 
-
-Blockly.Python['note'] = function(block) {
-	// var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_NONE);
-  var value_pin = '8';
-
-	var value_frequency = Blockly.Python.valueToCode(block, 'note', Blockly.Python.ORDER_NONE);
-	var d = Blockly.Python.valueToCode(block, 'duration', Blockly.Python.ORDER_ATOMIC);
-
-	Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
-	Blockly.Python.definitions_['import_pwm'] = 'from machine import PWM';
-  Blockly.Python.definitions_['import_time'] = 'import time';
-  	
-	var x = value_pin.replace('(','').replace(')','');
-
-	//var code = 'pwm' + x + ' = PWM(Pin(' + x + '), freq=' + value_frequency + ', ' + ' duty=512)\n';
-  var code = `pwm${value_pin} = PWM(Pin(${value_pin}))\npwm${value_pin}.freq(${value_frequency})\npwm${value_pin}.duty_u16(32768)\n`;
-
-	var d1=parseFloat(d);
-	if (d1==0)
-		code += '';
-	else
-		code += 'time.sleep(' + d + ')\npwm' + x + '.deinit()\n';
-
-	return code;
-  };
-
-
+  Blockly.Python['note'] = function(block) {
+    // var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_NONE);
+    var value_pin = '2';
+  
+    var value_frequency = Blockly.Python.valueToCode(block, 'note', Blockly.Python.ORDER_NONE);
+    var d = Blockly.Python.valueToCode(block, 'duration', Blockly.Python.ORDER_NONE);
+  
+    Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
+    Blockly.Python.definitions_['import_pwm'] = 'from machine import PWM';
+    Blockly.Python.definitions_['import_time'] = 'import time';
+    Blockly.Python.definitions_['tempo_set'] = 'tempo = 120';
+      
+    var x = value_pin.replace('(','').replace(')','');
+  
+    //var code = 'pwm' + x + ' = PWM(Pin(' + x + '), freq=' + value_frequency + ', ' + ' duty=512)\n';
+    var code = '';
+    if (value_frequency > 0) {
+      code += `pwm${value_pin} = PWM(Pin(${value_pin}))\npwm${value_pin}.freq(${value_frequency})\npwm${value_pin}.duty_u16(32768)\n`;
+    }
+    var d1=parseFloat(d);
+    if (d1==0)
+      code += '';
+    else
+      code += 'time.sleep( ' + d + '/ tempo )\npwm' + x + '.deinit()\n';
+  
+    return code;
+    };
+  
 Blockly.Python['tone_type'] = function(block) {
   var dropdown_tone = block.getFieldValue('tone');
   var code = dropdown_tone;
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.Python['duration_type'] = function(block) {
+  var dropdown_duration = block.getFieldValue('duration');
+  var code = dropdown_duration;
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
 
+Blockly.Python['tempo'] = function(block) {
+	// var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_NONE);
+	var tempo = Blockly.Python.valueToCode(block, 'tempo', Blockly.Python.ORDER_ATOMIC);
+	var code = `tempo = ${tempo}\n`;
+	return code;
+  };
 
 //Other st7789 functions
 /*
