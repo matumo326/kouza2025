@@ -1,0 +1,659 @@
+<document>
+    <category name="せいぎょ" colour="%{BKY_LOOPS_HUE}">
+      <block type="roop"></block>
+      <block type="thread"></block>
+      <block type="timer"></block>
+    </category>
+    <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
+      <block type="controls_if"></block>
+      <block type="logic_compare"></block>
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
+      <block type="logic_boolean"></block>
+      <block type="logic_null"></block>
+      <block type="logic_ternary"></block>
+    </category>
+    <category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="controls_whileUntil"></block>
+      <block type="controls_for">
+        <value name="FROM">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="TO">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+        <value name="BY">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="controls_forEach"></block>
+      <block type="controls_flow_statements"></block>
+    </category>
+    <category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">
+      <block type="math_number">
+        <field name="NUM">123</field>
+      </block>
+      <block type="math_arithmetic">
+        <value name="A">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="B">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_single">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">9</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_trig">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">45</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_constant"></block>
+      <block type="math_number_property">
+        <value name="NUMBER_TO_CHECK">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_round">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">3.1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_on_list"></block>
+      <block type="math_modulo">
+        <value name="DIVIDEND">
+          <shadow type="math_number">
+            <field name="NUM">64</field>
+          </shadow>
+        </value>
+        <value name="DIVISOR">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_constrain">
+        <value name="VALUE">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+        <value name="LOW">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="HIGH">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_random_int">
+        <value name="FROM">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="TO">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_random_float"></block>
+      <block type="var_to_int">
+        <field name="VAR">to int</field>
+      </block>
+    </category>
+    <category name="%{BKY_CATTEXT}" colour="%{BKY_TEXTS_HUE}">
+      <block type="text"></block>
+      <block type="text_join"></block>
+      <block type="text_append">
+        <value name="TEXT">
+          <shadow type="text"></shadow>
+        </value>
+      </block>
+      <block type="text_length">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_isEmpty">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_indexOf">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+        <value name="FIND">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_charAt">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_getSubstring">
+        <value name="STRING">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_changeCase">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_trim">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_prompt_ext">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_to_str">
+        <field name="VAR">to str</field>
+      </block>
+    </category>
+    <category name="%{BKY_CATLISTS}" colour="%{BKY_LISTS_HUE}">
+      <block type="lists_create_with">
+        <mutation items="0"></mutation>
+      </block>
+      <block type="lists_create_with"></block>
+      <block type="lists_repeat">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="lists_length"></block>
+      <block type="lists_isEmpty"></block>
+      <block type="lists_indexOf">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_getIndex">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_setIndex">
+        <value name="LIST">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_getSublist">
+        <value name="LIST">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_split">
+        <value name="DELIM">
+          <shadow type="text">
+            <field name="TEXT">,</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="lists_sort"></block>
+    </category>
+
+    <sep></sep>
+    <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE">
+    </category>
+    <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
+
+    <category name="じかん" colour="%{BKY_MATH_HUE}">
+      <block type="delay">
+      <value name="time">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="delay_ms">
+      <value name="time">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+
+    </block>
+    <block type="delay_us">
+      <value name="time">
+      <shadow type="math_number">
+      <field name="NUM">1</field>
+      </shadow>
+      </value>
+    </block>
+    <block type="ticks_ms"></block>
+    <block type="ticks_us"></block>
+    <block type="ticks_diff"></block>
+
+
+    <!-- <block type="timer"></block>
+    <block type="stop_timer">
+    <value name="timerNumber">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block> -->
+
+    <!-- <block type="deep_sleep8266">
+     <value name="interval">
+        <shadow type="math_number">
+          <field name="NUM">60</field>
+        </shadow>
+      </value>
+    </block> -->
+  </category>
+
+  <sep></sep>
+
+<!--     <category name="スイッチ" colour="160">    
+      <block type="touch_get">
+      <value name="threshold">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    </category> -->
+
+<!--   <category name="音楽" colour="20">
+    <block type="rtttl_play"> 
+      <value name="song">
+        <shadow type="text">
+          <field name="TEXT">Jingle Bells</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="note"> 
+      <value name="note">
+        <shadow type="tone_type">
+          <field name="note"></field>
+        </shadow>
+      </value>
+     <value name="duration">
+        <shadow type="duration_type">
+          <field name="duration"></field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="tempo"> 
+     <value name="tempo">
+        <shadow type="math_number">
+          <field name="NUM">120</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="tone"> 
+     <value name="frequency">
+        <shadow type="math_number">
+          <field name="NUM">440</field>
+        </shadow>
+      </value>
+     <value name="duration">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="tone_type"> </block>
+
+    <label text="曲データ:"></label>
+    <block type="text"> <field name="TEXT">Jingle Bells</field> </block>
+    <block type="text"> <field name="TEXT">Rudolph the Red-nosed Reindeer</field> </block>
+    <block type="text"> <field name="TEXT">Silent Night</field> </block>
+    <block type="text"> <field name="TEXT">we wish you a merry christmas</field> </block>
+    <block type="text"> <field name="TEXT">Christmas Eve</field> </block>
+    <block type="text"> <field name="TEXT">Christmas Song</field> </block>
+    <block type="text"> <field name="TEXT">All I Want For Christmas Is You</field> </block>
+    <block type="text"> <field name="TEXT">I Saw Mommy Kissing Santa Claus</field> </block>
+    <block type="text"> <field name="TEXT">Amazing Grace</field> </block>
+  </category> -->
+
+  <category name="LEDストリング" colour="40">
+      <!-- <label text="NeoPixel LED"></label>
+      <button text="Documentation and how to connect: neopixel" callbackKey="loadDoc"></button> -->
+
+      <!-- <block type="neopixel_init">
+       <value name="pin">
+          <shadow type="pinout">
+            <field name="Pin"></field>
+          </shadow>
+       </value>
+
+       <value name="number">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+       </value>
+      </block> -->
+
+      <!-- <block type="neopixel_control">
+       <value name="address">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+       </value>
+
+       <value name="color">
+        <shadow type="neopixel_color_colors">
+          <field name="PIN"></field>
+        </shadow>
+       </value>
+      </block> -->
+
+      <block type="neopixel_control">
+       <value name="address">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+       </value>
+
+       <value name="color">
+        <block type="neopixel_color_numbers">
+         <value name="red">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+         </value>
+         <value name="green">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+         </value>
+         <value name="blue">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+         </value>
+        </block>
+       </value>
+      </block>
+
+      <block type="neopixel_control_line">
+       <value name="start_address">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+       </value>
+       <value name="end_address">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+       </value>
+
+       <value name="color">
+        <block type="neopixel_color_numbers">
+         <value name="red">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+         </value>
+         <value name="green">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+         </value>
+         <value name="blue">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+         </value>
+        </block>
+       </value>
+      </block>
+
+      <block type="neopixel_control_all">
+       <value name="color">
+        <block type="neopixel_color_numbers">
+         <value name="red">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+         </value>
+         <value name="green">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+         </value>
+         <value name="blue">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+         </value>
+        </block>
+       </value>
+      </block>
+      <block type="neopixel_color_numbers">
+       <value name="red">
+        <shadow type="math_number">
+          <field name="NUM">20</field>
+        </shadow>
+       </value>
+       <value name="green">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+       </value>
+       <value name="blue">
+        <shadow type="math_number">
+          <field name="NUM">99</field>
+        </shadow>
+       </value>
+      </block>
+
+      <!-- <block type="neopixel_color_colors"></block> -->
+
+      <block type="HSL_to_RGB">
+        <value name="hue">
+        <shadow type="math_number">
+          <field name="NUM">204</field>
+        </shadow>
+        </value>
+        <value name="saturation">
+        <shadow type="math_number">
+          <field name="NUM">100.0</field>
+        </shadow>
+        </value>
+        <value name="lightness">
+        <shadow type="math_number">
+          <field name="NUM">50.0</field>
+        </shadow>
+        </value>
+      </block>
+
+      <block type="neopixel_rotate_right">
+       <value name="step">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+       </value>
+      </block>
+
+      <block type="neopixel_rotate_left">
+       <value name="step">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+       </value>
+      </block>
+
+      <block type="neopixel_write"></block>
+      
+  </category>
+
+  <category name="イルミパターン" colour="40">
+      <block type="pattern_huwa">
+       <value name="color">
+        <block type="neopixel_color_numbers">
+         <value name="red">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+         </value>
+         <value name="green">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+         </value>
+         <value name="blue">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+         </value>
+        </block>
+       </value>
+       <value name="speed">
+        <shadow type="math_number">
+          <field name="NUM">5</field>
+        </shadow>
+       </value>
+      </block>
+
+      <block type="pattern_random_blink">
+       <value name="num">
+        <shadow type="math_number">
+          <field name="NUM">20</field>
+        </shadow>
+       </value>
+       <value name="speed">
+        <shadow type="math_number">
+          <field name="NUM">3</field>
+        </shadow>
+       </value>
+       <value name="count">
+        <shadow type="math_number">
+          <field name="NUM">5</field>
+        </shadow>
+       </value>
+      </block>
+
+      <block type="pattern_change_move_up">
+       <value name="speed">
+        <shadow type="math_number">
+          <field name="NUM">5</field>
+        </shadow>
+       </value>
+       <value name="duration">
+        <shadow type="math_number">
+          <field name="NUM">5</field>
+        </shadow>
+       </value>
+      </block>
+
+      <block type="pattern_change_move_down">
+       <value name="speed">
+        <shadow type="math_number">
+          <field name="NUM">5</field>
+        </shadow>
+       </value>
+       <value name="duration">
+        <shadow type="math_number">
+          <field name="NUM">5</field>
+        </shadow>
+       </value>
+      </block>
+
+  </category>
+
+  <sep></sep>
+
+    <!-- <category name="プロジェクト情報">
+    <block type="project_metadata">
+      <field name="NAME">プロジェクト情報</field>
+      <value name="project_author">
+        <shadow type="text">
+          <field name="TEXT">user</field>
+        </shadow>
+      </value>
+      <value name="project_iot_id">
+        <shadow type="math_number">
+          <field name="NUM"></field>
+        </shadow>
+      </value>
+      <value name="project_description">
+        <shadow type="text">
+          <field name="TEXT">Program_Name</field>
+        </shadow>
+      </value>
+    </block>
+     </category>
+  <sep></sep> -->
+</document>
